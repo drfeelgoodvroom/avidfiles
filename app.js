@@ -1,46 +1,14 @@
-const gallery = document.getElementById("gallery");
+document.addEventListener("DOMContentLoaded", () => {
 
-const widget =
-  uploadcare.Widget("[role=uploadcare-uploader]");
+  const widget =
+    uploadcare.Widget("[role=uploadcare-uploader]");
 
-/* LIGHTBOX */
-const lightbox =
-  document.getElementById("lightbox");
+  widget.onUploadComplete(function(fileInfo){
 
-const lightboxImg =
-  document.getElementById("lightboxImg");
+    alert("Upload successful!");
 
-function openLightbox(url){
-  lightboxImg.src = url;
-  lightbox.style.display = "flex";
-}
+    console.log("Uploaded file:", fileInfo.cdnUrl);
 
-function closeLightbox(){
-  lightbox.style.display = "none";
-}
+  });
 
-/* ADD IMAGE */
-function addImage(url){
-
-  const tile =
-    document.createElement("div");
-
-  tile.className = "tile";
-
-  const img =
-    document.createElement("img");
-
-  img.src = url;
-
-  tile.appendChild(img);
-
-  tile.onclick =
-    () => openLightbox(url);
-
-  gallery.prepend(tile);
-}
-
-/* UPLOAD HANDLER */
-widget.onUploadComplete(function(fileInfo){
-  addImage(fileInfo.cdnUrl);
 });
