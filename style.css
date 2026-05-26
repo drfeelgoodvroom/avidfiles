@@ -1,13 +1,12 @@
 :root{
   --blue:#003262;
   --gold:#FDB515;
-  --bg:#f7f9fc;
+  --bg:#f6f8fb;
   --text:#1f2937;
   --muted:#6b7280;
   --border:#e5e7eb;
 }
 
-/* BASE */
 body{
   margin:0;
   font-family:"Inter", sans-serif;
@@ -15,19 +14,13 @@ body{
   color:var(--text);
 }
 
-/* HEADINGS */
-h1, .brand-title{
-  font-family:"Merriweather", serif;
-}
-
-/* TOP BAR */
+/* HEADER */
 .topbar{
   background:var(--blue);
   color:white;
 
   display:flex;
   align-items:center;
-  justify-content:space-between;
 
   padding:14px 18px;
 
@@ -47,10 +40,15 @@ h1, .brand-title{
   background:white;
 }
 
+.title{
+  font-family:"Merriweather", serif;
+  font-size:16px;
+}
+
 /* HERO */
 .hero{
   text-align:center;
-  padding:40px 16px 10px;
+  padding:48px 16px 10px;
 }
 
 .hero h1{
@@ -63,10 +61,10 @@ h1, .brand-title{
   color:var(--muted);
 }
 
-/* UPLOAD */
-.upload-card{
+/* UPLOAD BOX */
+.upload-box{
   max-width:420px;
-  margin:20px auto;
+  margin:30px auto;
 
   background:white;
   border:1px solid var(--border);
@@ -75,64 +73,14 @@ h1, .brand-title{
 
   border-radius:10px;
 
-  padding:18px;
+  padding:22px;
 
   text-align:center;
+
+  box-shadow:0 6px 18px rgba(0,0,0,0.05);
 }
 
 .note{
   font-size:12px;
   color:var(--muted);
-}
-
-/* GALLERY (Instagram-style grid) */
-.gallery{
-  max-width:1100px;
-  margin:30px auto;
-  padding:10px;
-
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-  gap:10px;
-}
-
-/* IMAGE TILE */
-.tile{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:10px;
-  overflow:hidden;
-  cursor:pointer;
-
-  transition:0.2s ease;
-}
-
-.tile:hover{
-  transform:translateY(-2px);
-}
-
-.tile img{
-  width:100%;
-  height:170px;
-  object-fit:cover;
-}
-
-/* LIGHTBOX */
-#lightbox{
-  position:fixed;
-  inset:0;
-
-  background:rgba(0,0,0,0.92);
-
-  display:none;
-  align-items:center;
-  justify-content:center;
-
-  z-index:9999;
-}
-
-#lightbox img{
-  max-width:92%;
-  max-height:88%;
-  border-radius:10px;
 }
