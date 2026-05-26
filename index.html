@@ -1,153 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AVID Upload Portal</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Salinas High AVID Portal</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
-      background: #eef2f7;
-      color: #1f2937;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f6f8fb;
+    color: #1f2937;
+  }
 
-    /* Top bar (Google Drive style) */
-    .topbar {
-      background: white;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-    }
+  /* HEADER */
+  .header {
+    background: #003262;
+    color: white;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 16px;
-    }
+  .logo {
+    width: 40px;
+    height: 40px;
+    background: #FDB515;
+    color: #003262;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    border-radius: 8px;
+  }
 
-    .logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: #2563eb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-    }
+  .header-text {
+    line-height: 1.2;
+  }
 
-    /* Hero section */
-    .hero {
-      text-align: center;
-      padding: 40px 20px 10px 20px;
-    }
+  .header-text b {
+    display: block;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+  }
 
-    .hero h1 {
-      margin: 0;
-      font-size: 26px;
-      font-weight: 700;
-    }
+  .header-text span {
+    font-size: 12px;
+    opacity: 0.85;
+  }
 
-    .hero p {
-      margin-top: 8px;
-      color: #6b7280;
-      font-size: 14px;
-    }
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 35px 20px 10px;
+  }
 
-    /* Upload card */
-    .card {
-      background: white;
-      max-width: 420px;
-      margin: 30px auto;
-      padding: 28px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      text-align: center;
-    }
+  .hero h1 {
+    margin: 0;
+    color: #003262;
+    font-size: 26px;
+  }
 
-    .card h2 {
-      margin-bottom: 8px;
-      font-size: 18px;
-    }
+  .hero p {
+    color: #6b7280;
+    font-size: 14px;
+  }
 
-    .card p {
-      font-size: 13px;
-      color: #6b7280;
-      margin-bottom: 20px;
-    }
+  /* UPLOAD CARD */
+  .card {
+    max-width: 420px;
+    margin: 25px auto;
+    background: white;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-top: 4px solid #FDB515;
+    text-align: center;
+  }
 
-    /* Upload button spacing */
-    input[type="hidden"] {
-      display: block;
-      margin: 0 auto;
-    }
+  .note {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 12px;
+    line-height: 1.4;
+  }
 
-    /* Disclaimer */
-    .disclaimer {
-      margin-top: 18px;
-      font-size: 11px;
-      color: #9ca3af;
-      line-height: 1.4;
-    }
+  /* GALLERY */
+  .gallery {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
 
-    /* Footer */
-    .footer {
-      text-align: center;
-      font-size: 11px;
-      color: #9ca3af;
-      margin: 30px 10px;
-    }
-  </style>
+  .gallery img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.03);
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 30px;
+  }
+</style>
 </head>
 
 <body>
 
-  <!-- Top Bar -->
-  <div class="topbar">
-    <div class="brand">
-      <div class="logo">A</div>
-      Salinas High AVID Uploads
-    </div>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">AV</div>
+  <div class="header-text">
+    <b>Salinas High School AVID Portal</b>
+    <span>University-style photo upload system</span>
   </div>
+</div>
 
-  <!-- Hero -->
-  <div class="hero">
-    <h1>Upload Your AVID Memories</h1>
-    <p>Share photos from your AVID years with your class</p>
+<!-- HERO -->
+<div class="hero">
+  <h1>Upload Your AVID Memories</h1>
+  <p>Class archive • Salinas High School</p>
+</div>
+
+<!-- UPLOAD -->
+<div class="card">
+
+  <script>
+    UPLOADCARE_PUBLIC_KEY = "1f824a36818cadf5ede3";
+  </script>
+
+  <input type="hidden" role="uploadcare-uploader" id="uploader"/>
+
+  <div class="note">
+    Upload JPG or PNG images only.<br/>
+    Please keep content school-appropriate.
   </div>
+</div>
 
-  <!-- Upload Card -->
-  <div class="card">
-    <h2>Upload Files</h2>
-    <p>Drag & drop or click to upload images</p>
+<!-- GALLERY -->
+<div class="gallery" id="gallery"></div>
 
-    <script>
-      UPLOADCARE_PUBLIC_KEY = "1f824a36818cadf5ede3";
-    </script>
+<div class="footer">
+  AVID 27 • Salinas High School
+</div>
 
-    <input type="hidden" role="uploadcare-uploader" />
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
 
-    <div class="disclaimer">
-      ⚠️ Accepted files: images only (JPG, PNG).<br/>
-      Max file size depends on upload service limits.<br/>
-      Please upload school-appropriate content only.
-    </div>
-  </div>
+<script>
+  const gallery = document.getElementById("gallery");
+  const widget = uploadcare.Widget("[role=uploadcare-uploader]");
 
-  <div class="footer">
-    AVID 27 • Salinas High School
-  </div>
+  widget.onUploadComplete(function(fileInfo) {
+    const url = fileInfo.cdnUrl;
 
-  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+    const img = document.createElement("img");
+    img.src = url;
+
+    img.onclick = () => window.open(url, "_blank");
+
+    gallery.prepend(img);
+  });
+</script>
 
 </body>
 </html>
