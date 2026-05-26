@@ -87,6 +87,29 @@ body{
   justify-content:center;
 }
 
+.upload-btn{
+  background:var(--gold);
+  color:var(--blue);
+
+  border:none;
+
+  padding:12px 16px;
+
+  border-radius:8px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  width:100%;
+
+  transition:0.2s ease;
+}
+
+.upload-btn:hover{
+  opacity:0.9;
+}
+
 .note{
   font-size:12px;
   color:var(--muted);
