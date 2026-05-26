@@ -1,127 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+<title>Salinas High AVID 27’</title>
+
+<link rel="stylesheet" href="style.css"/>
+
+<!-- UC-style fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
 
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Salinas High AVID 27’</title>
-
-  <link rel="stylesheet" href="style.css"/>
-
-  <script>
-    UPLOADCARE_PUBLIC_KEY = "1f824a36818cadf5ede3";
-  </script>
+<script>
+  UPLOADCARE_PUBLIC_KEY = "1f824a36818cadf5ede3";
+</script>
 
 </head>
 
-/* MAIN UI FONT */
-body{
-  margin:0;
+<body>
 
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+<header class="topbar">
 
-  background:#f7f9fc;
-  color:#1f2937;
+  <div class="brand">
 
-  -webkit-font-smoothing:antialiased;
-}
+    <img src="logo.png" class="logo" />
 
-/* UNIVERSITY-STYLE HEADINGS */
-.hero h1,
-.brand-title,
-.name{
-  font-family:
-    "Merriweather",
-    Georgia,
-    serif;
-}
-
-  <!-- TOP NAV -->
-  <header class="topbar">
-
-    <div class="brand">
-
-      <img src="logo.png" class="logo"/>
-
-      <div>
-
-        <div class="brand-title">
-          Salinas High AVID 27’
-        </div>
-
-        <div class="brand-sub">
-          University-style yearbook archive
-        </div>
-
+    <div>
+      <div class="brand-title">
+        Salinas High AVID 27’
       </div>
-
+      <div class="brand-sub">
+        Photo Archive • UC-style Yearbook Portal
+      </div>
     </div>
-
-    <div class="nav">
-
-      <button class="btn" onclick="toggleMode()">
-        Yearbook Mode
-      </button>
-
-    </div>
-
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-
-    <h1>
-      AVID Photo Archive
-    </h1>
-
-    <p>
-      Upload and preserve memories from your AVID years.
-    </p>
-
-  </section>
-
-  <!-- UPLOAD -->
-  <section class="upload-card">
-
-    <input
-      type="hidden"
-      role="uploadcare-uploader"
-    />
-
-    <div class="note">
-      JPG or PNG only • School appropriate content only
-    </div>
-
-  </section>
-
-  <!-- GALLERY -->
-  <main id="container">
-
-    <div class="gallery" id="gallery"></div>
-
-  </main>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" onclick="closeLightbox()">
-
-    <img id="lightboxImg"/>
 
   </div>
 
-  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+</header>
 
-  <script src="app.js"></script>
+<section class="hero">
+
+  <h1>AVID Photo Archive</h1>
+  <p>Upload memories from your AVID years</p>
+
+</section>
+
+<section class="upload-card">
+
+  <input type="hidden" role="uploadcare-uploader"/>
+
+  <p class="note">
+    JPG / PNG only • Keep content school appropriate
+  </p>
+
+</section>
+
+<main>
+  <div id="gallery" class="gallery"></div>
+</main>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg"/>
+</div>
+
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
