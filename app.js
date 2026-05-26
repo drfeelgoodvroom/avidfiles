@@ -1,13 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const widget =
-    uploadcare.Widget("[role=uploadcare-uploader]");
+  const widget = uploadcare.Widget();
+
+  const btn = document.getElementById("uploadBtn");
+
+  btn.addEventListener("click", () => {
+    widget.openDialog();
+  });
 
   widget.onUploadComplete(function(fileInfo){
 
-    alert("Upload successful!");
+    console.log("Uploaded:", fileInfo.cdnUrl);
 
-    console.log("Uploaded file:", fileInfo.cdnUrl);
+    alert("Upload successful ✔");
 
   });
 
