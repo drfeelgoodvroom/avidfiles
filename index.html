@@ -1,91 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AVID Upload Portal</title>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      background: #eef2f7;
+      color: #1f2937;
     }
 
-    /* Banner */
-    .banner {
-      background: #0b3d91;
-      color: white;
-      padding: 30px 20px;
+    /* Top bar (Google Drive style) */
+    .topbar {
+      background: white;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
     }
 
     .logo {
-      width: 70px;
-      height: 70px;
-      background: white;
-      border-radius: 50%;
-      margin: 0 auto 10px auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #2563eb;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      color: #0b3d91;
-      font-size: 20px;
-    }
-
-    h1 {
-      margin: 10px 0 5px 0;
-      font-size: 26px;
-    }
-
-    p {
-      margin: 0;
+      color: white;
       font-size: 14px;
-      opacity: 0.9;
+      font-weight: bold;
     }
 
-    /* Upload box */
-    .container {
-      margin-top: 40px;
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding: 40px 20px 10px 20px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      margin-top: 8px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    /* Upload card */
+    .card {
       background: white;
-      display: inline-block;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 420px;
+      margin: 30px auto;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
     }
 
-    .note {
-      font-size: 12px;
-      color: gray;
-      margin-top: 10px;
-      max-width: 300px;
+    .card h2 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+
+    /* Upload button spacing */
+    input[type="hidden"] {
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      margin-top: 18px;
+      font-size: 11px;
+      color: #9ca3af;
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: #9ca3af;
+      margin: 30px 10px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Banner -->
-  <div class="banner">
-    <div class="logo">AVID</div>
-    <h1>Salinas High AVID Upload Portal</h1>
-    <p>Upload your AVID year memories & photos</p>
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">A</div>
+      Salinas High AVID Uploads
+    </div>
   </div>
 
-  <!-- Upload Section -->
-  <div class="container">
-    <h2>Upload Your Photos</h2>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Upload Your AVID Memories</h1>
+    <p>Share photos from your AVID years with your class</p>
+  </div>
+
+  <!-- Upload Card -->
+  <div class="card">
+    <h2>Upload Files</h2>
+    <p>Drag & drop or click to upload images</p>
 
     <script>
-      UPLOADCARE_PUBLIC_KEY = "1f824a36818cadf5ede3";
+      UPLOADCARE_PUBLIC_KEY = "YOUR_KEY_HERE";
     </script>
 
     <input type="hidden" role="uploadcare-uploader" />
 
-    <div class="note">
-      ⚠️ File limit: images only (JPG, PNG). Max size depends on upload service limits. Please avoid inappropriate or unrelated content.
+    <div class="disclaimer">
+      ⚠️ Accepted files: images only (JPG, PNG).<br/>
+      Max file size depends on upload service limits.<br/>
+      Please upload school-appropriate content only.
     </div>
+  </div>
+
+  <div class="footer">
+    AVID 27 • Salinas High School
   </div>
 
   <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
