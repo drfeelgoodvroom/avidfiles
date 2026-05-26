@@ -57,10 +57,14 @@ body{
     4px solid var(--california-gold);
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
+.brand-title{
+  font-size:17px;
+
+  font-weight:700;
+
+  letter-spacing:.2px;
+
+  line-height:1.2;
 }
 
 .logo{
@@ -120,9 +124,13 @@ body{
 
   color:var(--berkeley-blue);
 
-  font-size:36px;
+  font-size:42px;
 
   font-weight:700;
+
+  line-height:1.1;
+
+  letter-spacing:-0.5px;
 }
 
 .hero p{
