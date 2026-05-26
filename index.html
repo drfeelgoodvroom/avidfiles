@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Images</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 80px; }
+    .box { padding: 30px; border: 1px solid #ccc; display: inline-block; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Upload Your Images Here</h2>
+
+    <script>
+      UPLOADCARE_PUBLIC_KEY = "YOUR_KEY";
+    </script>
+
+    <input type="hidden" role="uploadcare-uploader" />
+  </div>
+
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+</body>
+</html>
