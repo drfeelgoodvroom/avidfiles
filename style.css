@@ -62,24 +62,42 @@ body{
 }
 
 /* UPLOAD BOX */
-.upload-box{
-  max-width:420px;
+.upload-btn{
+  width:100%;
+  padding:12px;
 
-  margin:40px auto;
+  border:none;
+  border-radius:8px;
 
-  background:white;
+  font-weight:700;
 
-  border:1px solid var(--border);
-  border-top:4px solid var(--gold);
+  cursor:pointer;
 
+  background:var(--gold);
+  color:var(--blue);
+
+  margin-bottom:10px;
+}
+
+.upload-btn.secondary{
+  background:#dbe3ee;
+  color:#6b7280;
+}
+
+.upload-btn:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+}
+
+.preview{
+  margin-top:12px;
+}
+
+.preview img{
+  width:100%;
   border-radius:10px;
-
-  padding:22px;
-
-  text-align:center;
-
-  box-shadow:0 6px 18px rgba(0,0,0,0.05);
-
+  border:1px solid #e5e7eb;
+}
   /* 🔥 THIS IS THE IMPORTANT PART */
   display:flex;
   flex-direction:column;
