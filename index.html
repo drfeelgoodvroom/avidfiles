@@ -1,455 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Salinas High AVID 27’ • Upload Portal</title>
 
-<style>
-  :root{
-    --blue:#003262;
-    --gold:#FDB515;
-    --bg:#f6f8fb;
-    --text:#1f2937;
-    --muted:#6b7280;
-    --card:#ffffff;
-    --border:#e5e7eb;
-  }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  /* UCB-style font feel */
-  body{
-    margin:0;
-    font-family:"Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans", sans-serif;
-    background:var(--bg);
-    color:var(--text);
-  }
+  <title>Salinas High AVID 27’</title>
 
-  /* Top bar */
-  .topbar{
-    position:sticky;
-    top:0;
-    z-index:10;
-    background:var(--blue);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:14px 16px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.15);
-  }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    min-width:0;
-  }
-
-  /* Logo image (preferred) */
-  .logo-img{
-    width:44px;
-    height:44px;
-    border-radius:10px;
-    object-fit:cover;
-    background:rgba(255,255,255,0.15);
-    border:1px solid rgba(255,255,255,0.25);
-    flex:0 0 auto;
-  }
-
-  /* Fallback logo if you don’t have logo.png yet */
-  .logo-fallback{
-    width:44px;
-    height:44px;
-    border-radius:10px;
-    background:var(--gold);
-    color:var(--blue);
-    display:none; /* shown only if image fails via JS */
-    align-items:center;
-    justify-content:center;
-    font-weight:900;
-    letter-spacing:.3px;
-    flex:0 0 auto;
-  }
-
-  .brand-text{
-    min-width:0;
-    line-height:1.1;
-  }
-  .brand-title{
-    font-weight:700;
-    letter-spacing:.2px;
-    font-size:14px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-  .brand-sub{
-    font-size:12px;
-    opacity:.85;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-
-  .actions{
-    display:flex;
-    gap:10px;
-    flex:0 0 auto;
-  }
-  .btn{
-    border:none;
-    border-radius:10px;
-    padding:9px 12px;
-    font-weight:700;
-    cursor:pointer;
-    letter-spacing:.2px;
-  }
-  .btn-gold{
-    background:var(--gold);
-    color:var(--blue);
-  }
-  .btn-ghost{
-    background:rgba(255,255,255,0.12);
-    color:#fff;
-    border:1px solid rgba(255,255,255,0.22);
-  }
-
-  /* Page header */
-  .hero{
-    text-align:center;
-    padding:26px 14px 10px;
-  }
-  .hero h1{
-    margin:0;
-    color:var(--blue);
-    font-size:26px;
-    font-weight:800;
-    letter-spacing:.2px;
-  }
-  .hero p{
-    margin:8px 0 0;
-    color:var(--muted);
-    font-size:14px;
-  }
-
-  /* Upload card */
-  .card{
-    max-width:520px;
-    margin:18px auto;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-top:5px solid var(--gold);
-    border-radius:16px;
-    padding:18px 18px 14px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    text-align:center;
-  }
-  .card h2{
-    margin:2px 0 6px;
-    font-size:16px;
-    font-weight:800;
-    color:var(--blue);
-    letter-spacing:.2px;
-  }
-  .card .desc{
-    margin:0 0 14px;
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.4;
-  }
-  .note{
-    margin-top:12px;
-    font-size:11px;
-    color:#8892a0;
-    line-height:1.4;
-  }
-
-  /* Gallery */
-  .wrap{
-    max-width:1160px;
-    margin:20px auto 40px;
-    padding:0 10px;
-  }
-  .section-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin:10px 4px 12px;
-  }
-  .section-head .label{
-    font-size:13px;
-    color:var(--muted);
-    letter-spacing:.2px;
-  }
-
-  /* Grid mode (Instagram-ish) */
-  .gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
-    gap:10px;
-  }
-  .tile{
-    position:relative;
-    border-radius:14px;
-    overflow:hidden;
-    background:#e9eef7;
-    border:1px solid rgba(0,0,0,0.06);
-    box-shadow:0 6px 16px rgba(0,0,0,0.06);
-    cursor:pointer;
-    transform:translateZ(0);
-  }
-  .tile img{
-    width:100%;
-    height:170px;
-    object-fit:cover;
-    display:block;
-    transition:transform .18s ease;
-  }
-  .tile:hover img{ transform:scale(1.03); }
-
-  /* Yearbook mode (list cards) */
-  .yearbook .gallery{
-    grid-template-columns:1fr;
-    max-width:760px;
-    margin:0 auto;
-  }
-  .entry{
-    display:flex;
-    gap:14px;
-    align-items:center;
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.06);
-    cursor:pointer;
-  }
-  .entry img{
-    width:92px;
-    height:92px;
-    border-radius:12px;
-    object-fit:cover;
-    border:1px solid rgba(0,0,0,0.06);
-    flex:0 0 auto;
-  }
-  .meta .name{
-    font-weight:800;
-    color:var(--blue);
-    font-size:14px;
-    letter-spacing:.2px;
-  }
-  .meta .sub{
-    margin-top:3px;
-    font-size:12px;
-    color:var(--muted);
-  }
-
-  /* Lightbox (full-screen viewer) */
-  #lightbox{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.92);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
-    padding:18px;
-  }
-  #lightbox img{
-    max-width:96vw;
-    max-height:86vh;
-    border-radius:16px;
-    box-shadow:0 14px 40px rgba(0,0,0,0.55);
-  }
-  #lightbox .close{
-    position:absolute;
-    top:14px;
-    right:14px;
-    background:rgba(255,255,255,0.12);
-    color:#fff;
-    border:1px solid rgba(255,255,255,0.22);
-    border-radius:12px;
-    padding:10px 12px;
-    font-weight:800;
-    cursor:pointer;
-  }
-  #lightbox .hint{
-    position:absolute;
-    bottom:14px;
-    left:50%;
-    transform:translateX(-50%);
-    color:rgba(255,255,255,0.7);
-    font-size:12px;
-  }
-
-  .footer{
-    text-align:center;
-    font-size:11px;
-    color:#9aa3b2;
-    padding:14px 10px 28px;
-  }
-</style>
-</head>
-
-<body>
-
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="brand">
-    <!-- Put your real logo file in the repo as: logo.png -->
-    <img class="logo-img" id="logoImg" src="logo.png" alt="AVID 27 logo" />
-    <div class="logo-fallback" id="logoFallback">27</div>
-
-    <div class="brand-text">
-      <div class="brand-title">Salinas High AVID 27’</div>
-      <div class="brand-sub">Photo Upload • Class Yearbook Archive</div>
-    </div>
-  </div>
-
-  <div class="actions">
-    <button class="btn btn-ghost" id="modeBtn" onclick="toggleMode()">Yearbook Mode</button>
-    <button class="btn btn-gold" onclick="scrollToUpload()">Upload</button>
-  </div>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <h1>Salinas High AVID 27’</h1>
-  <p>Upload photos from your AVID years — they’ll show up in the gallery below.</p>
-</div>
-
-<!-- UPLOAD -->
-<div class="card" id="uploadCard">
-  <h2>Upload Photos</h2>
-  <p class="desc">Choose an image to add to the AVID 27’ archive. Tap any photo to view full-screen.</p>
+  <link rel="stylesheet" href="style.css"/>
 
   <script>
     UPLOADCARE_PUBLIC_KEY = "1f824a36818cadf5ede3";
   </script>
 
-  <input type="hidden" role="uploadcare-uploader" />
+</head>
 
-  <div class="note">
-    Accepted: JPG/PNG • Keep it school-appropriate.<br>
-    Limit depends on the upload service settings.
-  </div>
-</div>
+<body>
 
-<!-- GALLERY -->
-<div class="wrap" id="container">
-  <div class="section-head">
-    <div class="label" id="modeLabel">Gallery Mode (Grid)</div>
-  </div>
-  <div class="gallery" id="gallery"></div>
-</div>
+  <!-- TOP NAV -->
+  <header class="topbar">
 
-<div class="footer">AVID 27’ • Salinas High School</div>
+    <div class="brand">
 
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()">
-  <button class="close" onclick="closeLightbox(); event.stopPropagation();">Close</button>
-  <img id="lightboxImg" alt="Full view"/>
-  <div class="hint">Tap outside the photo to close</div>
-</div>
+      <img src="logo.png" class="logo"/>
 
-<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+      <div>
 
-<script>
-  // Logo fallback if logo.png is missing
-  const logoImg = document.getElementById("logoImg");
-  const logoFallback = document.getElementById("logoFallback");
-  logoImg.addEventListener("error", () => {
-    logoImg.style.display = "none";
-    logoFallback.style.display = "flex";
-  });
-
-  // Lightbox
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-  function openLightbox(url){
-    lightboxImg.src = url;
-    lightbox.style.display = "flex";
-  }
-  function closeLightbox(){
-    lightbox.style.display = "none";
-    lightboxImg.src = "";
-  }
-
-  // Modes
-  let yearbook = false;
-  const container = document.getElementById("container");
-  const gallery = document.getElementById("gallery");
-  const modeBtn = document.getElementById("modeBtn");
-  const modeLabel = document.getElementById("modeLabel");
-
-  function toggleMode(){
-    yearbook = !yearbook;
-    if(yearbook){
-      container.classList.add("yearbook");
-      modeBtn.textContent = "Grid Mode";
-      modeLabel.textContent = "Yearbook Mode (List)";
-    }else{
-      container.classList.remove("yearbook");
-      modeBtn.textContent = "Yearbook Mode";
-      modeLabel.textContent = "Gallery Mode (Grid)";
-    }
-    // Re-render existing items into the new layout
-    rerender();
-  }
-
-  function scrollToUpload(){
-    document.getElementById("uploadCard").scrollIntoView({behavior:"smooth", block:"center"});
-  }
-
-  // Store items in-memory (this keeps them while the tab is open)
-  // If you want permanence across refresh, you’ll need a database (Firebase, etc.).
-  const items = [];
-
-  function addItem(url){
-    items.unshift({
-      url,
-      name: "AVID 27’",
-      sub: "Salinas High School"
-    });
-    renderOne(items[0], true);
-  }
-
-  function renderOne(item, prepend=false){
-    if(!yearbook){
-      const tile = document.createElement("div");
-      tile.className = "tile";
-      const img = document.createElement("img");
-      img.src = item.url;
-      img.alt = "AVID upload";
-      tile.appendChild(img);
-      tile.onclick = () => openLightbox(item.url);
-      if(prepend) gallery.prepend(tile); else gallery.appendChild(tile);
-    }else{
-      const entry = document.createElement("div");
-      entry.className = "entry";
-      entry.innerHTML = `
-        <img src="${item.url}" alt="AVID upload"/>
-        <div class="meta">
-          <div class="name">${item.name}</div>
-          <div class="sub">${item.sub}</div>
+        <div class="brand-title">
+          Salinas High AVID 27’
         </div>
-      `;
-      entry.onclick = () => openLightbox(item.url);
-      if(prepend) gallery.prepend(entry); else gallery.appendChild(entry);
-    }
-  }
 
-  function rerender(){
-    gallery.innerHTML = "";
-    for(const it of items) renderOne(it, false);
-  }
+        <div class="brand-sub">
+          University-style yearbook archive
+        </div>
 
-  // Uploadcare widget
-  const widget = uploadcare.Widget("[role=uploadcare-uploader]");
-  widget.onUploadComplete(function(fileInfo){
-    addItem(fileInfo.cdnUrl);
-  });
-</script>
+      </div>
+
+    </div>
+
+    <div class="nav">
+
+      <button class="btn" onclick="toggleMode()">
+        Yearbook Mode
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <h1>
+      AVID Photo Archive
+    </h1>
+
+    <p>
+      Upload and preserve memories from your AVID years.
+    </p>
+
+  </section>
+
+  <!-- UPLOAD -->
+  <section class="upload-card">
+
+    <input
+      type="hidden"
+      role="uploadcare-uploader"
+    />
+
+    <div class="note">
+      JPG or PNG only • School appropriate content only
+    </div>
+
+  </section>
+
+  <!-- GALLERY -->
+  <main id="container">
+
+    <div class="gallery" id="gallery"></div>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" onclick="closeLightbox()">
+
+    <img id="lightboxImg"/>
+
+  </div>
+
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+
+  <script src="app.js"></script>
 
 </body>
 </html>
