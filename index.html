@@ -33,16 +33,21 @@
 
 <section class="upload-box">
 
-  <input
-    type="hidden"
-    role="uploadcare-uploader"
-    data-public-key="1f824a36818cadf5ede3"
-    data-clearable="true"
-  />
+  <button id="chooseBtn" class="upload-btn">
+    Choose Photo
+  </button>
+
+  <button id="uploadBtn" class="upload-btn secondary" disabled>
+    Upload Photo
+  </button>
 
   <p class="note">
-    Tap to upload JPG / PNG files
+    JPG / PNG only • Select then confirm upload
   </p>
+
+  <div id="preview" class="preview"></div>
+
+  <input type="hidden" role="uploadcare-uploader"/>
 
 </section>
 
