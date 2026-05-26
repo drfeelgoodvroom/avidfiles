@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const widget = uploadcare.Widget();
+  const widget = uploadcare.Widget("[role=uploadcare-uploader]");
 
   const btn = document.getElementById("uploadBtn");
 
@@ -10,9 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   widget.onUploadComplete(function(fileInfo){
 
-    console.log("Uploaded:", fileInfo.cdnUrl);
+    if(!fileInfo || !fileInfo.cdnUrl) return;
 
     alert("Upload successful ✔");
+
+    console.log("File URL:", fileInfo.cdnUrl);
 
   });
 
