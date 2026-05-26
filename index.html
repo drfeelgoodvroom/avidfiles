@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Salinas High AVID Portal</title>
+<title>AVID Yearbook Portal</title>
 
 <style>
+  /* UC-STYLE FONT STACK */
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -17,10 +18,16 @@
   .header {
     background: #003262;
     color: white;
-    padding: 18px 20px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   .logo {
@@ -28,51 +35,55 @@
     height: 40px;
     background: #FDB515;
     color: #003262;
+    font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
     border-radius: 8px;
   }
 
-  .header-text {
-    line-height: 1.2;
-  }
-
-  .header-text b {
-    display: block;
+  .title {
     font-size: 14px;
-    letter-spacing: 0.3px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
   }
 
-  .header-text span {
-    font-size: 12px;
-    opacity: 0.85;
+  /* YEARBOOK TOGGLE */
+  .toggle {
+    background: #FDB515;
+    color: #003262;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
   }
 
   /* HERO */
   .hero {
     text-align: center;
-    padding: 35px 20px 10px;
+    padding: 30px 15px 10px;
   }
 
   .hero h1 {
     margin: 0;
     color: #003262;
-    font-size: 26px;
+    font-size: 24px;
+    font-weight: 700;
   }
 
   .hero p {
+    margin-top: 6px;
     color: #6b7280;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   /* UPLOAD CARD */
   .card {
     max-width: 420px;
-    margin: 25px auto;
+    margin: 20px auto;
     background: white;
-    padding: 24px;
+    padding: 20px;
     border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     border-top: 4px solid #FDB515;
@@ -82,14 +93,13 @@
   .note {
     font-size: 11px;
     color: #9ca3af;
-    margin-top: 12px;
-    line-height: 1.4;
+    margin-top: 10px;
   }
 
-  /* GALLERY */
+  /* GALLERY GRID MODE */
   .gallery {
     max-width: 1100px;
-    margin: 30px auto;
+    margin: 25px auto;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -109,13 +119,40 @@
     transform: scale(1.03);
   }
 
-  /* FOOTER */
-  .footer {
-    text-align: center;
-    font-size: 11px;
-    color: #9ca3af;
-    margin: 30px;
+  /* 📖 YEARBOOK MODE */
+  .yearbook .gallery {
+    grid-template-columns: 1fr;
+    max-width: 700px;
   }
+
+  .yearbook .entry {
+    display: flex;
+    gap: 12px;
+    background: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    align-items: center;
+  }
+
+  .yearbook img {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+  }
+
+  .name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #003262;
+  }
+
+  .sub {
+    font-size: 11px;
+    color: #6b7280;
+  }
+
 </style>
 </head>
 
@@ -123,57 +160,85 @@
 
 <!-- HEADER -->
 <div class="header">
-  <div class="logo">AV</div>
-  <div class="header-text">
-    <b>Salinas High School AVID Portal</b>
-    <span>University-style photo upload system</span>
+  <div class="brand">
+    <div class="logo">AV</div>
+    <div class="title">Salinas High AVID Portal</div>
   </div>
+
+  <button class="toggle" onclick="toggleMode()">Yearbook Mode</button>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <h1>Upload Your AVID Memories</h1>
-  <p>Class archive • Salinas High School</p>
+  <h1>AVID Photo Archive</h1>
+  <p>Upload memories • Class of 2026</p>
 </div>
 
 <!-- UPLOAD -->
 <div class="card">
-
   <script>
     UPLOADCARE_PUBLIC_KEY = "1f824a36818cadf5ede3";
   </script>
 
-  <input type="hidden" role="uploadcare-uploader" id="uploader"/>
+  <input type="hidden" role="uploadcare-uploader" />
 
   <div class="note">
-    Upload JPG or PNG images only.<br/>
-    Please keep content school-appropriate.
+    JPG/PNG only • School-appropriate content
   </div>
 </div>
 
 <!-- GALLERY -->
-<div class="gallery" id="gallery"></div>
-
-<div class="footer">
-  AVID 27 • Salinas High School
+<div id="container">
+  <div class="gallery" id="gallery"></div>
 </div>
 
 <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
 
 <script>
   const gallery = document.getElementById("gallery");
+  const container = document.getElementById("container");
+
+  let yearbook = false;
+
   const widget = uploadcare.Widget("[role=uploadcare-uploader]");
 
   widget.onUploadComplete(function(fileInfo) {
     const url = fileInfo.cdnUrl;
 
-    const img = document.createElement("img");
-    img.src = url;
-
-    img.onclick = () => window.open(url, "_blank");
-
-    gallery.prepend(img);
+    addImage(url, "Student", "AVID 2026");
   });
+
+  function addImage(url, name, sub) {
+    if (!yearbook) {
+      const img = document.createElement("img");
+      img.src = url;
+      img.onclick = () => window.open(url, "_blank");
+      gallery.prepend(img);
+    } else {
+      const div = document.createElement("div");
+      div.className = "entry";
+
+      div.innerHTML = `
+        <img src="${url}" />
+        <div>
+          <div class="name">${name}</div>
+          <div class="sub">${sub}</div>
+        </div>
+      `;
+
+      gallery.prepend(div);
+    }
+  }
+
+  function toggleMode() {
+    yearbook = !yearbook;
+
+    if (yearbook) {
+      container.classList.add("yearbook");
+    } else {
+      container.classList.remove("yearbook");
+    }
+  }
 </script>
 
 </body>
