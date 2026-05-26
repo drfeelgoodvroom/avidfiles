@@ -1,205 +1,110 @@
 :root{
-  --berkeley-blue:#003262;
-  --california-gold:#FDB515;
-
+  --blue:#003262;
+  --gold:#FDB515;
   --bg:#f7f9fc;
   --text:#1f2937;
   --muted:#6b7280;
-
-  --border:#dbe3ee;
+  --border:#e5e7eb;
 }
 
 /* BASE */
-/* MAIN UI FONT */
 body{
   margin:0;
-
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-
-  background:#f7f9fc;
-  color:#1f2937;
-
-  -webkit-font-smoothing:antialiased;
-}
-
-/* UNIVERSITY-STYLE HEADINGS */
-.hero h1,
-.brand-title,
-.name{
-  font-family:
-    "Merriweather",
-    Georgia,
-    serif;
-}
+  font-family:"Inter", sans-serif;
   background:var(--bg);
   color:var(--text);
-
-  -webkit-font-smoothing:antialiased;
 }
 
-/* TOPBAR */
-.topbar{
-  background:var(--berkeley-blue);
+/* HEADINGS */
+h1, .brand-title{
+  font-family:"Merriweather", serif;
+}
 
+/* TOP BAR */
+.topbar{
+  background:var(--blue);
   color:white;
 
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
 
-  padding:14px 22px;
+  padding:14px 18px;
 
-  border-bottom:
-    4px solid var(--california-gold);
+  border-bottom:4px solid var(--gold);
 }
 
-.brand-title{
-  font-size:17px;
-
-  font-weight:700;
-
-  letter-spacing:.2px;
-
-  line-height:1.2;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .logo{
-  width:48px;
-  height:48px;
-
-  object-fit:cover;
-
+  width:44px;
+  height:44px;
   border-radius:8px;
-
   background:white;
-}
-
-/* TITLES */
-.brand-title{
-  font-size:15px;
-  font-weight:700;
-}
-
-.brand-sub{
-  font-size:12px;
-  opacity:.82;
-}
-
-/* BUTTON */
-.btn{
-  background:var(--california-gold);
-
-  color:var(--berkeley-blue);
-
-  border:none;
-
-  padding:10px 15px;
-
-  border-radius:6px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-  transition:.18s;
-}
-
-.btn:hover{
-  opacity:.9;
 }
 
 /* HERO */
 .hero{
   text-align:center;
-
-  padding:56px 20px 18px;
+  padding:40px 16px 10px;
 }
 
 .hero h1{
   margin:0;
-
-  color:var(--berkeley-blue);
-
-  font-size:42px;
-
-  font-weight:700;
-
-  line-height:1.1;
-
-  letter-spacing:-0.5px;
+  color:var(--blue);
+  font-size:34px;
 }
 
 .hero p{
-  margin-top:10px;
-
   color:var(--muted);
-
-  font-size:15px;
 }
 
 /* UPLOAD */
 .upload-card{
-  max-width:540px;
-
-  margin:24px auto;
+  max-width:420px;
+  margin:20px auto;
 
   background:white;
+  border:1px solid var(--border);
 
-  border:
-    1px solid var(--border);
-
-  border-top:
-    5px solid var(--california-gold);
+  border-top:4px solid var(--gold);
 
   border-radius:10px;
 
-  padding:28px;
+  padding:18px;
 
   text-align:center;
 }
 
 .note{
-  margin-top:14px;
-
   font-size:12px;
-
   color:var(--muted);
 }
 
-/* GALLERY */
+/* GALLERY (Instagram-style grid) */
 .gallery{
-  max-width:1200px;
-
-  margin:34px auto;
-
-  padding:0 14px;
+  max-width:1100px;
+  margin:30px auto;
+  padding:10px;
 
   display:grid;
-
-  grid-template-columns:
-    repeat(auto-fill,minmax(190px,1fr));
-
-  gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:10px;
 }
 
-/* TILE */
+/* IMAGE TILE */
 .tile{
   background:white;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:10px;
-
   overflow:hidden;
-
   cursor:pointer;
 
-  transition:.18s ease;
+  transition:0.2s ease;
 }
 
 .tile:hover{
@@ -208,73 +113,18 @@ body{
 
 .tile img{
   width:100%;
-  height:190px;
-
+  height:170px;
   object-fit:cover;
-
-  display:block;
-}
-
-/* YEARBOOK */
-.yearbook .gallery{
-  grid-template-columns:1fr;
-
-  max-width:780px;
-}
-
-.entry{
-  display:flex;
-
-  align-items:center;
-
-  gap:16px;
-
-  background:white;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:10px;
-
-  padding:14px;
-}
-
-.entry img{
-  width:92px;
-  height:92px;
-
-  object-fit:cover;
-
-  border-radius:8px;
-}
-
-.name{
-  color:var(--berkeley-blue);
-
-  font-weight:700;
-
-  font-size:15px;
-}
-
-.sub{
-  margin-top:4px;
-
-  color:var(--muted);
-
-  font-size:12px;
 }
 
 /* LIGHTBOX */
 #lightbox{
   position:fixed;
-
   inset:0;
 
-  background:
-    rgba(0,0,0,.92);
+  background:rgba(0,0,0,0.92);
 
   display:none;
-
   align-items:center;
   justify-content:center;
 
@@ -282,26 +132,7 @@ body{
 }
 
 #lightbox img{
-  max-width:94%;
-  max-height:90%;
-
+  max-width:92%;
+  max-height:88%;
   border-radius:10px;
-}
-
-/* MOBILE */
-@media(max-width:700px){
-
-  .topbar{
-    padding:12px 14px;
-  }
-
-  .hero h1{
-    font-size:28px;
-  }
-
-  .gallery{
-    grid-template-columns:
-      repeat(auto-fill,minmax(150px,1fr));
-  }
-
 }
